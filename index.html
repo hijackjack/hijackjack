@@ -190,7 +190,7 @@
 
         L.marker([lat, lng])
             .bindPopup(popupHtml)
-            .bindTooltip(String(id))
+            .bindTooltip(String(id + " - " + name))
             .addTo(markers);
 
     });
