@@ -38,6 +38,21 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             font-weight: bold;
         }
+
+        /* 標籤圖示樣式 */
+        .number-icon {
+            background-color: #3388ff; /* Leaflet 預設藍色 */
+            color: white;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-family: Arial, sans-serif;
+        }
     </style>
 </head>
 
@@ -188,7 +203,15 @@
             '<b>經度：</b>' + lng +
             '</div>';
 
-        L.marker([lat, lng])
+        // 使用 L.divIcon 建立直接帶有數字的圓形標籤
+        const customIcon = L.divIcon({
+            className: 'number-icon',
+            html: id,
+            iconSize: [26, 26],
+            iconAnchor: [13, 13] // 調整定錨點為中心
+        });
+
+        L.marker([lat, lng], { icon: customIcon })
             .bindPopup(popupHtml)
             .bindTooltip(String(id + " - " + name))
             .addTo(markers);
